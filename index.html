@@ -19,7 +19,7 @@
     <a href="#payment">Онлайн төлөө</a>
     <a href="#delivery">Доставка</a>
   </nav>
-  <a class="manager-mini" href="https://wa.me/996507668866" target="_blank" rel="noopener">WhatsApp Manager</a>
+  <span class="manager-mini hidden" id="topManager">WhatsApp Manager</span>
 </header>
 
 <main id="home">
@@ -98,7 +98,7 @@
             <img id="backPreview" alt="">
           </label>
         </div>
-        <div class="step-actions"><button type="button" class="btn ghost prev">← Артка</button><button type="button" class="btn primary next">Улантуу →</button></div>
+        <div class="manager-box"><div><span>Паспортту WhatsApp Managerге жөнөтүү</span><strong>Эки тарабы</strong></div><button id="sendPassport" class="btn whatsapp" type="button">📄 Паспортту WhatsApp’ка жөнөтүү</button></div><div class="step-actions"><button type="button" class="btn ghost prev">← Артка</button><button type="button" class="btn primary next">Улантуу →</button></div>
       </div>
 
       <div class="card step" data-step="4">
@@ -109,7 +109,7 @@
           <span class="upload-icon">📷</span><b>Паспорт менен селфи жүктөө</b><small>Камера же галерея</small>
           <img id="selfiePreview" alt="">
         </label>
-        <label class="check"><input id="confirmDocs" type="checkbox"> <span>Мен оригинал документтерди өзүм жүктөгөнүмдү жана маалыматтар туура экенин ырастайм.</span></label>
+        <label class="check"><input id="confirmDocs" type="checkbox"> <span>Мен оригинал документтерди өзүм жүктөгөнүмдү жана маалыматтар туура экенин ырастайм.</span></label><div class="manager-box"><div><span>Паспорт менен селфи</span><strong>WhatsApp Manager</strong></div><button id="sendSelfie" class="btn whatsapp" type="button">🤳 Селфини WhatsApp’ка жөнөтүү</button></div>
         <div class="step-actions"><button type="button" class="btn ghost prev">← Артка</button><button type="button" class="btn primary next">Текшерүү →</button></div>
       </div>
 
@@ -124,10 +124,10 @@
           </div>
         </div>
         <input id="deliveryType" type="hidden">
-        <div class="notice success">Бардык талаптар аткарылса, менеджердин WhatsApp номери чыгат жана даяр билдирүү түзүлөт.</div>
-        <div class="manager-box">
-          <div><span>Менеджер</span><strong>+996 507 66 88 66</strong></div>
-          <a id="sendKassa" class="btn whatsapp disabled" href="#" target="_blank" rel="noopener" aria-disabled="true">WhatsApp Manager →</a>
+        <div class="notice success">Бардык кадамдарды бүткөндөн кийин даяр текстти туура окуп, WhatsApp Managerге жөнөтөсүз.</div>
+        <div class="manager-box hidden" id="managerBox">
+          <div><span>Өтүнмө кабыл алынгандан кийин</span><strong>+996 507 66 88 66</strong></div>
+          <button id="sendKassa" class="btn whatsapp disabled" type="button" disabled>🟢 Даяр текстти WhatsAppка жөнөтүү →</button>
         </div>
         <div class="step-actions"><button type="button" class="btn ghost prev">← Артка</button></div>
       </div>
@@ -151,8 +151,8 @@
         <button id="startVideo" class="btn primary" type="button">● Видеозапись баштоо</button>
         <button id="stopVideo" class="btn ghost hidden" type="button">■ Токтотуу</button>
         <video id="recordedVideo" class="recorded hidden" controls playsinline></video>
-        <div id="videoStatus" class="status">Камерага уруксат берүү үчүн баскычты басыңыз.</div>
-        <button id="shareVideo" class="btn whatsapp hidden" type="button">WhatsApp Managerге жөнөтүү</button>
+        <div id="videoStatus" class="status">Камерага уруксат берүү үчүн баскычты басыңыз.</div><p class="small-note">Видео сайтта тартылат. «WhatsApp Managerге жөнөтүү» басканда Android бөлүшүү терезесинен WhatsAppты тандаңыз.</p>
+        <button id="sendVideo" class="btn whatsapp hidden" type="button">WhatsApp Managerге жөнөтүү</button>
       </div>
     </div>
   </section>
@@ -184,9 +184,9 @@
       </div>
       <div class="manager-box">
         <div><span>Чек жөнөтүү</span><strong>WhatsApp Manager</strong></div>
-        <button id="sendPayment" class="btn whatsapp disabled" type="button">Менеджерге жөнөтүү →</button>
+        <button id="sendPayment" class="btn whatsapp disabled" type="button">📎 Чекти WhatsAppка жөнөтүү →</button>
       </div>
-      <p class="small-note">Сайт WhatsApp'ка текстти даярдайт. Сүрөт/чек автоматтык тиркелиши браузердин WhatsApp бөлүшүү мүмкүнчүлүгүнө жараша болот.</p>
+      <p class="small-note">Android Chrome колдосо, файл түз эле бөлүшүү терезесине берилет. WhatsApp көрүнсө, аны тандап Send басыңыз.</p>
     </form>
   </section>
 
@@ -197,7 +197,7 @@
         <h2>Товарларды онлайн тандаңыз</h2>
         <p>Товар тандоо үчүн даяр өзүнчө сайтка өтүңүз.</p>
       </div>
-      <a id="productSiteLink" class="btn primary" href="#" target="_blank" rel="noopener">Товар тандоо →</a>
+      <a id="productSiteLink" class="btn primary" href="https://moymarket235.github.io/moy-market/" target="_blank" rel="noopener">Товар тандоо →</a>
     </div>
   </section>
 </main>
