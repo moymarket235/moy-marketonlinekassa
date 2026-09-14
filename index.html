@@ -1,213 +1,120 @@
 <!doctype html>
 <html lang="ky">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#111827">
-  <meta name="description" content="Мой Маркет — Онлайн касса, онлайн төлөө жана товар тандоо">
-  <title>Мой Маркет — Онлайн касса</title>
-  <link rel="preload" as="image" href="assets/background.webp">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Мой Маркет — Онлайн касса</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header class="topbar">
-  <a class="brand" href="#home" aria-label="Мой Маркет">
-    <img src="assets/logo.webp" alt="Мой Маркет логотиби">
-  </a>
-  <nav class="nav">
-    <a href="#kassa">Онлайн касса</a>
-    <a href="#payment">Онлайн төлөө</a>
-    <a href="#delivery">Доставка</a>
-  </nav>
-  <span class="manager-mini hidden" id="topManager">WhatsApp Manager</span>
+<header class="top">
+  <div class="brand">
+    <img src="assets/logo.webp" alt="Мой Маркет">
+    <div><b>Мой Маркет</b><span>ОНЛАЙН КАССА</span></div>
+  </div>
+  <div class="secure">🔒 Коопсуз каттоо</div>
 </header>
 
-<main id="home">
+<main class="wrap">
   <section class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <span class="eyebrow">MOY MARKET • ONLINE</span>
-      <h1>Онлайн касса<br><span>жаңы версия</span></h1>
-      <p>Катталыңыз, сумманы тандаңыз, керектүү документтерди даярдаңыз жана менеджерге жөнөтүңүз.</p>
-      <div class="hero-actions">
-        <a class="btn primary" href="#kassa">Кассага кошулуу</a>
-        <a class="btn glass" href="#payment">Онлайн төлөө</a>
-      </div>
-      <div class="trust-row">
-        <span>✓ Ыңгайлуу катталуу</span>
-        <span>✓ Кадам-кадам текшерүү</span>
-        <span>✓ WhatsApp Manager</span>
-      </div>
+    <p class="eyebrow">ОНЛАЙН КАССА</p>
+    <h1>Катталуу жана документтерди жөнөтүү</h1>
+    <p>Ар бир документти өзүнчө текшерип, жанындагы <b>«Менеджерге жөнөтүү»</b> баскычы аркылуу WhatsApp'ка жөнөтө аласыз.</p>
+  </section>
+
+  <section class="card">
+    <h2>1. Жеке маалымат</h2>
+    <label>Аты-жөнү
+      <input id="fullName" type="text" placeholder="Мисалы: Асанов Азамат" autocomplete="name">
+    </label>
+    <label>Группанын номери
+      <input id="groupNumber" type="text" placeholder="Мисалы: 12-23">
+    </label>
+
+    <div class="amounts">
+      <button class="amount" data-amount="5000">5 000 сом</button>
+      <button class="amount" data-amount="10000">10 000 сом</button>
+      <button class="amount" data-amount="15000">15 000 сом</button>
+    </div>
+    <label>Башка сумма
+      <input id="customAmount" type="number" min="1" inputmode="numeric" placeholder="Сом менен">
+    </label>
+  </section>
+
+  <section class="card">
+    <h2>2. Паспорттун алдыңкы тарабы</h2>
+    <div class="preview" id="frontPreview">Сүрөт тандала элек</div>
+    <input id="frontGallery" class="hidden" type="file" accept="image/*">
+    <input id="frontCamera" class="hidden" type="file" accept="image/*" capture="environment">
+    <div class="actions">
+      <button class="secondary" onclick="frontGallery.click()">🖼 Галереядан</button>
+      <button class="secondary" onclick="frontCamera.click()">📷 Камера менен</button>
+      <button class="wa" id="sendFront">🟢 Менеджерге жөнөтүү</button>
     </div>
   </section>
 
-  <section class="section" id="kassa">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">01 • ONLINE KASSA</span>
-        <h2>Онлайн кассага кошулуу</h2>
-        <p>Бардык талааларды толтуруп, керектүү материалдарды тиркеп бүткөндөн кийин гана менеджерге жөнөтүү баскычы ачылат.</p>
-      </div>
-      <div class="step-badge">Кадам <b id="stepNumber">1</b>/5</div>
-    </div>
-
-    <div class="progress"><span id="progressBar"></span></div>
-
-    <form id="kassaForm" novalidate>
-      <div class="card step active" data-step="1">
-        <div class="card-title"><span>1</span><div><h3>Жеке маалымат</h3><p>Аты-жөнү жана группанын номери</p></div></div>
-        <div class="grid two">
-          <label>Аты-жөнү
-            <input id="fullName" type="text" autocomplete="name" placeholder="Мисалы: Абдраимов Азамат" required>
-          </label>
-          <label>Группанын номери
-            <input id="groupNumber" type="text" placeholder="Мисалы: 235-01" required>
-          </label>
-        </div>
-        <div class="step-actions"><button type="button" class="btn primary next">Улантуу →</button></div>
-      </div>
-
-      <div class="card step" data-step="2">
-        <div class="card-title"><span>2</span><div><h3>Онлайн кассанын суммасы</h3><p>Канча сомдук кассага кошуласыз?</p></div></div>
-        <div class="amounts">
-          <button type="button" class="amount" data-amount="5000">5 000 сом</button>
-          <button type="button" class="amount" data-amount="10000">10 000 сом</button>
-          <button type="button" class="amount" data-amount="15000">15 000 сом</button>
-          <button type="button" class="amount other" data-amount="other">Башка сумма</button>
-        </div>
-        <label id="customAmountWrap" class="hidden">Каалаган сумма
-          <input id="customAmount" type="number" min="1" step="1" placeholder="Сом менен">
-        </label>
-        <input id="amountValue" type="hidden" required>
-        <div class="summary-line"><span>Тандалган сумма</span><strong id="amountPreview">—</strong></div>
-        <div class="step-actions"><button type="button" class="btn ghost prev">← Артка</button><button type="button" class="btn primary next">Улантуу →</button></div>
-      </div>
-
-      <div class="card step" data-step="3">
-        <div class="card-title"><span>3</span><div><h3>Паспорт документтери</h3><p>Оригинал паспорттун эки тарабын сапаттуу сүрөткө тартып тиркеңиз.</p></div></div>
-        <div class="notice warning"><b>Маанилүү:</b> сүрөттөрдө документтин бардык четтери көрүнүп, текст так окулушу керек.</div>
-        <div class="upload-grid">
-          <label class="upload">
-            <input id="passportFront" type="file" accept="image/*" capture="environment" required>
-            <span class="upload-icon">＋</span><b>Паспорттун 1-бети</b><small>Камера же галерея</small>
-            <img id="frontPreview" alt="">
-          </label>
-          <label class="upload">
-            <input id="passportBack" type="file" accept="image/*" capture="environment" required>
-            <span class="upload-icon">＋</span><b>Паспорттун 2-бети</b><small>Камера же галерея</small>
-            <img id="backPreview" alt="">
-          </label>
-        </div>
-        <div class="manager-box"><div><span>Паспортту WhatsApp Managerге жөнөтүү</span><strong>Эки тарабы</strong></div><button id="sendPassport" class="btn whatsapp" type="button">📄 Паспортту WhatsApp’ка жөнөтүү</button></div><div class="step-actions"><button type="button" class="btn ghost prev">← Артка</button><button type="button" class="btn primary next">Улантуу →</button></div>
-      </div>
-
-      <div class="card step" data-step="4">
-        <div class="card-title"><span>4</span><div><h3>Паспорт менен селфи</h3><p>Паспортту колуңузга кармап, жүзүңүз жана паспорт толугу менен көрүнгөн сүрөттү жүктөңүз.</p></div></div>
-        <div class="notice">Бул кадам документтин ээсин визуалдык текшерүүгө жардам берет.</div>
-        <label class="upload wide">
-          <input id="selfie" type="file" accept="image/*" capture="user" required>
-          <span class="upload-icon">📷</span><b>Паспорт менен селфи жүктөө</b><small>Камера же галерея</small>
-          <img id="selfiePreview" alt="">
-        </label>
-        <label class="check"><input id="confirmDocs" type="checkbox"> <span>Мен оригинал документтерди өзүм жүктөгөнүмдү жана маалыматтар туура экенин ырастайм.</span></label><div class="manager-box"><div><span>Паспорт менен селфи</span><strong>WhatsApp Manager</strong></div><button id="sendSelfie" class="btn whatsapp" type="button">🤳 Селфини WhatsApp’ка жөнөтүү</button></div>
-        <div class="step-actions"><button type="button" class="btn ghost prev">← Артка</button><button type="button" class="btn primary next">Текшерүү →</button></div>
-      </div>
-
-      <div class="card step" data-step="5">
-        <div class="card-title"><span>5</span><div><h3>Жөнөтүүгө даяр</h3><p>Төмөндөгү текшерүү тизмесинен бардык шарттар аткарылганын көрүңүз.</p></div></div>
-        <div id="checklist" class="checklist"></div>
-        <div class="delivery-choice">
-          <h4>Онлайн кассаны кантип аласыз?</h4>
-          <div class="choice-grid">
-            <button type="button" class="choice" data-delivery="Магазинге барып алам">🏪 <b>Магазинге барып алам</b><small>Өзүм келип алам</small></button>
-            <button type="button" class="choice" data-delivery="Онлайн доставка">🚚 <b>Онлайн доставка</b><small>Доставка керек</small></button>
-          </div>
-        </div>
-        <input id="deliveryType" type="hidden">
-        <div class="notice success">Бардык кадамдарды бүткөндөн кийин даяр текстти туура окуп, WhatsApp Managerге жөнөтөсүз.</div>
-        <div class="manager-box hidden" id="managerBox">
-          <div><span>Өтүнмө кабыл алынгандан кийин</span><strong>+996 507 66 88 66</strong></div>
-          <button id="sendKassa" class="btn whatsapp disabled" type="button" disabled>🟢 Даяр текстти WhatsAppка жөнөтүү →</button>
-        </div>
-        <div class="step-actions"><button type="button" class="btn ghost prev">← Артка</button></div>
-      </div>
-    </form>
-  </section>
-
-  <section class="section dark-section">
-    <div class="section-head compact">
-      <div>
-        <span class="eyebrow">02 • ВИДЕОЗАПИСЬ</span>
-        <h2>Магазинден алып кетүүдө видеозапись</h2>
-        <p>Камераны ачып, экрандагы текстти так айтып бүткөндөн кийин видеону менеджерге жөнөтүңүз.</p>
-      </div>
-    </div>
-    <div class="video-card">
-      <div class="script-box">
-        <span>Айтылышы зарыл:</span>
-        <p>«Мен <b id="videoName">аты-жөнү</b>, <b id="videoGroup">группанын номери</b>, Мой Маркет магазинінен Онлайн кассага кошулуп, <b id="videoAmount">10 000 сомго</b> товарымды алып кетип жатам. Убагында кечиктирбей акчасын салып турам. Ушуну менен видеозапись бүтөт.»</p>
-      </div>
-      <div class="video-controls">
-        <button id="startVideo" class="btn primary" type="button">● Видеозапись баштоо</button>
-        <button id="stopVideo" class="btn ghost hidden" type="button">■ Токтотуу</button>
-        <video id="recordedVideo" class="recorded hidden" controls playsinline></video>
-        <div id="videoStatus" class="status">Камерага уруксат берүү үчүн баскычты басыңыз.</div><p class="small-note">Видео сайтта тартылат. «WhatsApp Managerге жөнөтүү» басканда Android бөлүшүү терезесинен WhatsAppты тандаңыз.</p>
-        <button id="sendVideo" class="btn whatsapp hidden" type="button">WhatsApp Managerге жөнөтүү</button>
-      </div>
+  <section class="card">
+    <h2>3. Паспорттун арткы тарабы</h2>
+    <div class="preview" id="backPreview">Сүрөт тандала элек</div>
+    <input id="backGallery" class="hidden" type="file" accept="image/*">
+    <input id="backCamera" class="hidden" type="file" accept="image/*" capture="environment">
+    <div class="actions">
+      <button class="secondary" onclick="backGallery.click()">🖼 Галереядан</button>
+      <button class="secondary" onclick="backCamera.click()">📷 Камера менен</button>
+      <button class="wa" id="sendBack">🟢 Менеджерге жөнөтүү</button>
     </div>
   </section>
 
-  <section class="section" id="payment">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">03 • ONLINE PAYMENT</span>
-        <h2>Онлайн төлөө</h2>
-        <p>Аты-жөнүңүздү, группанын номериңизди жана сумманы көрсөтүп, төлөм чегин сүрөт катары тиркеңиз.</p>
-      </div>
+  <section class="card">
+    <h2>4. Селфи паспорт менен</h2>
+    <div class="preview" id="selfiePreview">Сүрөт тандала элек</div>
+    <input id="selfieGallery" class="hidden" type="file" accept="image/*">
+    <input id="selfieCamera" class="hidden" type="file" accept="image/*" capture="user">
+    <div class="actions">
+      <button class="secondary" onclick="selfieGallery.click()">🖼 Галереядан</button>
+      <button class="secondary" onclick="selfieCamera.click()">🤳 Камера менен</button>
+      <button class="wa" id="sendSelfie">🟢 Менеджерге жөнөтүү</button>
     </div>
-    <form id="paymentForm" class="card" novalidate>
-      <div class="grid two">
-        <label>Аты-жөнү
-          <input id="payName" type="text" placeholder="Аты-жөнү" required>
-        </label>
-        <label>Группанын номери
-          <input id="payGroup" type="text" placeholder="Группанын номери" required>
-        </label>
-        <label>Сумма, сом
-          <input id="payAmount" type="number" min="1" step="1" placeholder="Мисалы: 10 000" required>
-        </label>
-        <label class="upload compact-upload">
-          <input id="receipt" type="file" accept="image/*,application/pdf" capture="environment" required>
-          <span>📎</span><b>Чекти тиркөө</b><small>Галерея / камера / файл</small>
-          <img id="receiptPreview" alt="">
-        </label>
-      </div>
-      <div class="manager-box">
-        <div><span>Чек жөнөтүү</span><strong>WhatsApp Manager</strong></div>
-        <button id="sendPayment" class="btn whatsapp disabled" type="button">📎 Чекти WhatsAppка жөнөтүү →</button>
-      </div>
-      <p class="small-note">Android Chrome колдосо, файл түз эле бөлүшүү терезесине берилет. WhatsApp көрүнсө, аны тандап Send басыңыз.</p>
-    </form>
   </section>
 
-  <section class="section delivery-section" id="delivery">
-    <div class="delivery-banner">
-      <div>
-        <span class="eyebrow">04 • ONLINE KASSA DELIVERY</span>
-        <h2>Товарларды онлайн тандаңыз</h2>
-        <p>Товар тандоо үчүн даяр өзүнчө сайтка өтүңүз.</p>
-      </div>
-      <a id="productSiteLink" class="btn primary" href="https://moymarket235.github.io/moy-market/" target="_blank" rel="noopener">Товар тандоо →</a>
+  <section class="card">
+    <h2>5. Видеозапись</h2>
+    <p class="hint">Даяр текстти айтып, видеону сактап андан кийин менеджерге жөнөтүңүз.</p>
+    <div class="script">«Мен аты-жөнү (группасынын номери) Мой Маркет магазининен Онлайн кассага кошулуп, 10.000 сомго товарымды алып кетип жатам. Убагында кечиктирбей акчасын салып турам. Ушуну менен видеозапись бүтөт»</div>
+    <div class="video-box" id="videoBox">
+      <video id="videoPreview" playsinline autoplay muted></video>
+      <div id="videoPlaceholder">Видео азырынча тартылган жок</div>
     </div>
+    <div class="actions">
+      <button class="secondary" id="startVideo">🎥 Видеозапись</button>
+      <button class="secondary" id="stopVideo" disabled>⏹ Токтотуу</button>
+      <button class="secondary" id="retakeVideo" disabled>🔄 Кайрадан тартуу</button>
+      <button class="wa" id="sendVideo" disabled>🟢 Менеджерге жөнөтүү</button>
+      <button class="close" id="closeVideo" disabled>✕ Жабуу</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>6. Онлайн төлөө</h2>
+    <div class="preview" id="receiptPreview">Чек тандала элек</div>
+    <input id="receiptGallery" class="hidden" type="file" accept="image/*">
+    <input id="receiptCamera" class="hidden" type="file" accept="image/*" capture="environment">
+    <div class="actions">
+      <button class="secondary" onclick="receiptGallery.click()">🖼 Галереядан</button>
+      <button class="secondary" onclick="receiptCamera.click()">📷 Камера менен</button>
+      <button class="wa" id="sendReceipt">🟢 Менеджерге жөнөтүү</button>
+    </div>
+  </section>
+
+  <section class="card check">
+    <h2>Текшерүү</h2>
+    <div id="status">Маалыматтарды толтуруңуз.</div>
+    <button class="wa big" id="sendAll">🟢 Баарын текшерүү жана Менеджерге жөнөтүү</button>
+    <a class="product" href="https://moymarket235.github.io/moy-market/" target="_blank">🛒 Онлайн касса — товарларды көрүү</a>
   </section>
 </main>
 
-<footer>
-  <img src="assets/logo.webp" alt="Мой Маркет">
-  <p>© 2026 Мой Маркет • Онлайн касса</p>
-  <a href="https://wa.me/996507668866" target="_blank" rel="noopener">WhatsApp: +996 507 66 88 66</a>
-</footer>
-
-<script src="app.js" defer></script>
+<footer>Мой Маркет • Онлайн касса • Менеджер: +996 507 66 88 66</footer>
+<script src="app.js"></script>
 </body>
 </html>
